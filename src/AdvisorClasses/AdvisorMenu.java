@@ -9,6 +9,9 @@ import LoginPages.WelcomePage;
 import ManagerClasses.IndividualDomestic;
 import ManagerClasses.IndividualInterline;
 
+import javax.swing.*;
+import javax.swing.table.TableColumn;
+
 /**
  *
  * @author gordo
@@ -170,17 +173,22 @@ public class AdvisorMenu extends javax.swing.JFrame {
                                         .addContainerGap(139, Short.MAX_VALUE)))
         );
 
-        salesTable.setModel(new javax.swing.table.DefaultTableModel(
-                new Object [][] {
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null}
-                },
-                new String [] {
-                        "Customer ID", "Ticket ID", "Blank ID", "Customer First Name", "Customer Last Name", "Amount Paid"
-                }
-        ));
+        salesTable.setModel(new javax.swing.table.DefaultTableModel());
+        salesTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
+        //changing the width of the columns
+        for (int i = 0; i < salesTable.getColumnCount(); i++) {
+            TableColumn column = salesTable.getColumnModel().getColumn(i);
+            column.setPreferredWidth(300);
+        }
+        //adding the horizontal scroll bar
+        JScrollPane scrollPane = new JScrollPane(salesTable);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        JPanel panel = new JPanel();
+        panel.add(scrollPane);
+
+        //displays the table
+        sqlDisplay.DisplaySalesTable(salesTable, id);
         scrollpane5.setViewportView(salesTable);
 
         jScrollPane1.setViewportView(scrollpane5);

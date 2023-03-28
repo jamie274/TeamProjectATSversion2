@@ -24,7 +24,7 @@ public class SQLCustomerHelper {
                     "in2018g08_a", "R8pV1HmN");
 
             Statement stm = con.createStatement();
-            ResultSet result = stm.executeQuery("SELECT ID, FirstName, LastName, Email, Type FROM Customer");
+            ResultSet result = stm.executeQuery("SELECT ID, FirstName, LastName, Email, Type, DiscountPlan, Percentage FROM Customer");
 
             //this stores all the meta-data received from the query result
             ResultSetMetaData rsmd = result.getMetaData();
@@ -49,8 +49,10 @@ public class SQLCustomerHelper {
                 String custLastName = result.getString("LastName");
                 String custEmail = result.getString("Email");
                 String custType = result.getString("Type");
+                String DiscountPlan = Float.toString(result.getFloat("DiscountPlan"));
+                String Percentage = Float.toString(result.getFloat("Percentage"));
 
-                String[] row = {custID, custFirstName, custLastName, custEmail, custType};
+                String[] row = {custID, custFirstName, custLastName, custEmail, custType, DiscountPlan, Percentage};
                 //add the rows to the table
                 model.addRow(row);
             }
@@ -72,7 +74,7 @@ public class SQLCustomerHelper {
                     "in2018g08_a", "R8pV1HmN");
 
             Statement stm = con.createStatement();
-            ResultSet result = stm.executeQuery("SELECT ID, FirstName, LastName, Email, Type FROM Customer WHERE ID = " + id);
+            ResultSet result = stm.executeQuery("SELECT ID, FirstName, LastName, Email, Type, DiscountPlan, Percentage FROM Customer WHERE ID = " + id);
 
             //this stores all the meta-data received from the query result
             ResultSetMetaData rsmd = result.getMetaData();
@@ -97,8 +99,10 @@ public class SQLCustomerHelper {
                 String custLastName = result.getString("LastName");
                 String custEmail = result.getString("Email");
                 String custType = result.getString("Type");
+                String DiscountPlan = Float.toString(result.getFloat("DiscountPlan"));
+                String Percentage = Float.toString(result.getFloat("Percentage"));
 
-                String[] row = {custID, custFirstName, custLastName, custEmail, custType};
+                String[] row = {custID, custFirstName, custLastName, custEmail, custType, DiscountPlan, Percentage};
                 //add the rows to the table
                 model.addRow(row);
             } else { // user has not been found
